@@ -63,4 +63,5 @@ elem.setAttribute('columns', '["ratio", "lower_bound", "upper_bound", "trigger_a
 
 }
 
+
 export default Graph;
