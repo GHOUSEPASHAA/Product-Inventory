@@ -30,10 +30,13 @@ function App() {
     
       <Routes>
       <Route path="/" exact element={<Home/>} />
-      <Route path="/add" element={<AddProducts/>} />
+        <Route path="/add" element={<AddProducts key="tec" category="technology"/>} />
       <Route path="/dis" element={<DisplayProducts/>} />
       <Route path="/about" element={<About/>} />
-      <Route path="/sign" element={<SignIn/>} />
+      <Route path="/add/bus" element={<AddProducts key="bus" category="business"/>} />
+      <Route path="/add/ent" element={<AddProducts key="ent" category="entertainment"/>} />
+      <Route path="/add/sci" element={<AddProducts key="sci" category="science"/>} />
+        <Route path="/add/hea" element={<AddProducts key="hea" category="health"/>} />
      {/* <Route path="/action" component={ActionPage} />
       <Route path="/another-action" component={AnotherActionPage} />
       <Route path="/something" component={SomethingPage} />
