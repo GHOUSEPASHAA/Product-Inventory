@@ -27,10 +27,12 @@ const NavBar = (props) => {
             <Nav.Link as={Link} to="/add">AddProducts</Nav.Link>
             <Nav.Link as={Link} to="/dis">DisplayProducts</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
-            <Nav.Link as={Link} to="/add/bus">business</Nav.Link>
+            <Nav.Link as={Link} to="/log">Login</Nav.Link>
+            <Nav.Link as={Link} to="/reg">register</Nav.Link>
+            {/* <Nav.Link as={Link} to="/add/bus">business</Nav.Link>
             <Nav.Link as={Link} to="/add/ent">entertainment</Nav.Link>
             <Nav.Link as={Link} to="/add/sci">science</Nav.Link>
-            <Nav.Link as={Link} to="/add/hea">health</Nav.Link>
+            <Nav.Link as={Link} to="/add/hea">health</Nav.Link> */}
 
         <div className={`form-check form-switch text-${props.mode==='light'? 'Dark' : 'light'}`}>
     <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault" />

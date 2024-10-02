@@ -1,0 +1,22 @@
+From 3354ce02f4e2b5e7ea24a819db115a026395d3ce Mon Sep 17 00:00:00 2001
+From: jack <128167151+GHOUSEPASHAA@users.noreply.github.com>
+Date: Wed, 28 Aug 2024 18:58:08 +0530
+Subject: [PATCH] Your 2 commit message
+
+---
+ src/components/graph.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/components/graph.txt b/src/components/graph.txt
+index 63001e2..da7ab26 100644
+--- a/src/components/graph.txt
++++ b/src/components/graph.txt
+@@ -63,4 +63,5 @@ elem.setAttribute('columns', '["ratio", "lower_bound", "upper_bound", "trigger_a
+ 
+ }
+ 
++
+ export default Graph;
+-- 
+2.45.2.windows.1
+

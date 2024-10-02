@@ -1,39 +1,68 @@
-// SignIn.js
+// src/components/Login.js
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-import React from 'react';
-import firebase from 'firebase/compat/app'; // Importing firebase from 'firebase/app'
-import 'firebase/compat/auth';
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBIHJ5mH5-Fa5wnHS65rvNpCyyX1X6fjzY",
-    authDomain: "inventory-4e072.firebaseapp.com",
-    projectId: "inventory-4e072",
-    storageBucket: "inventory-4e072.appspot.com",
-    messagingSenderId: "1093111390440",
-    appId: "1:1093111390440:web:a754c7856f459eb2ea295d",
-    measurementId: "G-JP5RLFYKSQ"
-};
-
-if (!firebase.apps.length) { // Ensuring firebase is not initialized multiple times
-  firebase.initializeApp(firebaseConfig);
-}
-
-const SignIn = () => {
-  const handleSignIn = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
+      const response = await axios.post('http://localhost:8080/api/auth/login', {
+        username,
+        password,
+      });
+
+      // Assuming JWT Token is returned in response
+      localStorage.setItem('token', response.data.token);
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Invalid username or password');
     }
   };
 
   return (
-    <div>
-      <h2>Sign In with Google</h2>
-      <button onClick={handleSignIn}>Sign in with Google</button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <label htmlFor="username" className="block text-gray-700">Username</label>
+            <input
+              type="text"
+              id="username"
+              className="w-full border border-gray-300 rounded-md px-3 py-2"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-gray-700">Password</label>
+            <input
+              type="password"
+              id="password"
+              className="w-full border border-gray-300 rounded-md px-3 py-2"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {error && <p className="text-red-500">{error}</p>}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white rounded-md py-2"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default SignIn;
+export default Login;
